@@ -9,4 +9,4 @@ Catálogo com os principais parques nacionais do Brasil, um por região, com nom
 - Expo
 
 ## Identidade Visual
-Paleta de cores gerada no Adobe Color, com tons que rementem à natureza
+Paleta de cores gerada no Adobe Color, com tons que rementem à natureza.
