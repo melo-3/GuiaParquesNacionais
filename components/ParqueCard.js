@@ -1,12 +1,12 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-// Usamos uma arrow function e desestruturamos as props para pegar diretamente titulo e descricao [cite: 31, 64]
-const ParqueCard = ({ titulo, descricao }) => {
+// Usamos uma arrow function e desestruturamos as props para pegar diretamente titulo, descricao e a 'onPress' para receber a ação de clique
+const ParqueCard = ({ titulo, descricao, onPress }) => {
   return (
-    <View style={styles.card}>
+    <TouchableOpacity onPress={onPress} activeOpacity={0.7} style={styles.card}>
       <Text style={styles.titulo}>{titulo}</Text>
       <Text style={styles.descricao}>{descricao}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     marginVertical: 12,
     marginHorizontal: 16,
     borderRadius: 16, // Bordas bem arredondadas
-    
+
     // Configurações de sombra para dar um efeito sutil de elevação (Flat Design)
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
