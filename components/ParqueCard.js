@@ -1,15 +1,15 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 const ParqueCard = (props) => {
   return (
-    <View style={styles.card}>
+    <TouchableOpacity style={styles.card} onPress={props.onPress}>
       <View style={styles.regiaoTag}>
         <Text style={styles.regiaoTexto}>{props.regiao}</Text>
       </View>
       <Text style={styles.titulo}>{props.nome}</Text>
       <Text style={styles.descricao}>{props.descricao}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
