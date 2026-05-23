@@ -1,34 +1,75 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Button, ScrollView, TouchableOpacity } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
+import { useFavorites } from '../context/FavoritesContext';
 
 const DetalhesParque = () => {
   const route = useRoute();
   const navigation = useNavigation();
+  const { isFavorite, toggleFavorite } = useFavorites();
 
-  const { nomeParque, descricaoParque, regiaoParque } = route.params;
+  const { parqueDetalhes } = route.params;
+
+  if (!parqueDetalhes) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.errorText}>Detalhes do parque não encontrados.</Text>
+        <Button title="Voltar" onPress={() => navigation.goBack()} />
+      </View>
+    );
+  }
+
+  const favoriteIconName = isFavorite(parqueDetalhes.id) ? 'heart' : 'heart-outline';
+  const favoriteIconColor = isFavorite(parqueDetalhes.id) ? '#C1440E' : '#A6775B';
 
   return (
-    <View style={styles.container}>
-      <View style={styles.regiaoTag}>
-        <Text style={styles.regiaoTexto}>{regiaoParque}</Text>
+    <ScrollView style={styles.scrollViewContainer}>
+      <View style={styles.contentContainer}>
+        <View style={styles.header}>
+          <Text style={styles.titulo}>{parqueDetalhes.nome}</Text>
+          <TouchableOpacity onPress={() => toggleFavorite(parqueDetalhes.id)} style={styles.favoriteButton}>
+            <Ionicons name={favoriteIconName} size={30} color={favoriteIconColor} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.regiaoTag}>
+          <Text style={styles.regiaoTexto}>{parqueDetalhes.regiao}</Text>
+        </View>
+        <Text style={styles.descricao}>{parqueDetalhes.descricao}</Text>
+        <TouchableOpacity style={styles.botao} onPress={() => navigation.goBack()}>
+          <Text style={styles.botaoTexto}>Voltar</Text>
+        </TouchableOpacity>
       </View>
-      <Text style={styles.titulo}>{nomeParque}</Text>
-      <Text style={styles.descricao}>{descricaoParque}</Text>
-      <TouchableOpacity style={styles.botao} onPress={() => navigation.goBack()}>
-        <Text style={styles.botaoTexto}>Voltar</Text>
-      </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  scrollViewContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 24,
     backgroundColor: '#142615',
+  },
+  contentContainer: {
+    padding: 24,
+    alignItems: 'center',
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+    marginBottom: 16,
+  },
+  titulo: {
+    fontSize: 26,
+    fontFamily: 'Cochin',
+    fontWeight: 'bold',
+    color: '#A8D5A2',
+    flexShrink: 1,
+    marginRight: 10,
+  },
+  favoriteButton: {
+    padding: 5,
   },
   regiaoTag: {
     backgroundColor: '#A6775B',
@@ -42,14 +83,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Trebuchet MS',
     color: '#F5EAD3',
     fontWeight: 'bold',
-  },
-  titulo: {
-    fontSize: 26,
-    fontFamily: 'Cochin',
-    fontWeight: 'bold',
-    color: '#A8D5A2',
-    marginBottom: 16,
-    textAlign: 'center',
   },
   descricao: {
     fontSize: 15,
@@ -72,6 +105,18 @@ const styles = StyleSheet.create({
     fontFamily: 'Trebuchet MS',
     fontWeight: 'bold',
     fontSize: 14,
+  },
+  errorText: {
+    fontSize: 18,
+    color: 'red',
+    textAlign: 'center',
+    marginVertical: 50,
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#142615',
   },
 });
 
