@@ -1,39 +1,39 @@
 import React from 'react';
-import { View, ScrollView, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, FlatList } from 'react-native'; // Alterado de ScrollView para FlatList
 import { useNavigation } from '@react-navigation/native';
 import ParqueCard from '../components/ParqueCard';
-
-const parques = [
-  { id: '1', titulo: 'Parque Nacional do Iguaçu', descricao: 'Casa das famosas Cataratas do Iguaçu, é um Patrimônio Natural da Humanidade rico em biodiversidade.' },
-  { id: '2', titulo: 'Chapada Diamantina', descricao: 'Famoso por suas montanhas, cachoeiras imensas e grutas subterrâneas de águas cristalinas na Bahia.' },
-  { id: '3', titulo: 'Lençóis Maranhenses', descricao: 'Uma paisagem única de dunas de areia branca intercaladas por lagoas de água doce formadas pelas chuvas.' },
-  { id: '4', titulo: 'Serra dos Órgãos', descricao: 'Localizado no Rio de Janeiro, abriga o famoso pico Dedo de Deus e é um paraíso para o montanhismo.' },
-  { id: '5', titulo: 'Parque Nacional do Jaú', descricao: 'Uma das maiores reservas florestais da Amazônia, preservando a bacia do rio Jaú e sua fauna exótica.' },
-  { id: '6', titulo: 'Chapada dos Veadeiros', descricao: 'Cerrado de altitude em Goiás, conhecido por seus cânions, cachoeiras e formações de cristais de quartzo.' }
-];
+import { parques } from '../data/parques';
 
 const ListaParques = () => {
-  const navigation = useNavigation(); // Hook para acessar a navegação
+  const navigation = useNavigation();
+
+  // Função isolada para o clique, seguindo as boas práticas da aula [cite: 171]
+  const handleParquePress = (parque) => {
+    navigation.navigate('Detalhes', { parqueSelecionado: parque }); // [cite: 171]
+  };
+
+  const renderHeader = () => (
+    <View style={styles.header}>
+      <Text style={styles.mainTitle}>Portfólio Mobile</Text>
+      <Text style={styles.subTitle}>Guia de Parques Nacionais</Text>
+    </View>
+  );
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.mainTitle}>Portfólio Mobile</Text>
-        <Text style={styles.subTitle}>Guia de Parques Nacionais</Text>
-      </View>
-
-      <View style={styles.listContainer}>
-        {parques.map((parque) => (
-          <ParqueCard 
-            key={parque.id} 
-            titulo={parque.titulo} 
-            descricao={parque.descricao}
-            // Navega para a tela 'Detalhes' passando o objeto do parque inteiro como parâmetro
-            onPress={() => navigation.navigate('Detalhes', { parqueSelecionado: parque })}
+    <View style={styles.container}>
+      <FlatList 
+        data={parques} // [cite: 174]
+        keyExtractor={(item) => item.id}
+        ListHeaderComponent={renderHeader}
+        contentContainerStyle={styles.listContainer}
+        renderItem={({ item }) => (
+          <ParqueCard
+            parque={item} // Passa o objeto completo para o card [cite: 264]
+            onPress={() => handleParquePress(item)} 
           />
-        ))}
-      </View>
-    </ScrollView>
+        )}
+      />
+    </View>
   );
 };
 
