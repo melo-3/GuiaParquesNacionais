@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontFamily: 'Cochin',
     fontWeight: 'bold',
-    color: '#A8D5A2',
+    color: '#F5EAD3',
     flexShrink: 1,
     marginRight: 10,
   },
