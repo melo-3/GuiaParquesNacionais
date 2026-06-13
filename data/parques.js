@@ -1,40 +1,58 @@
 const parques = [
-    {
-      id: '1',
-      nome: 'Parque Nacional da Amazônia',
-      descricao: 'Localizado no Pará, protege uma das áreas mais ricas em biodiversidade da floresta amazônica.',
-      regiao: 'Norte',
-    },
-    {
-      id: '2',
-      nome: 'Parque Nacional da Chapada Diamantina',
-      descricao: 'Na Bahia, encanta com cachoeiras, grutas e chapadas no coração do sertão nordestino.',
-      regiao: 'Nordeste',
-    },
-    {
-      id: '3',
-      nome: 'Parque Nacional de Brasília',
-      descricao: 'Conhecido como "Água Mineral", preserva o cerrado e abastece parte da capital federal.',
-      regiao: 'Centro-Oeste',
-    },
-    {
-      id: '4',
-      nome: 'Parque Nacional do Iguaçu',
-      descricao: 'No Paraná, abriga as famosas Cataratas do Iguaçu, Patrimônio Natural da Humanidade pela UNESCO.',
-      regiao: 'Sul',
-    },
-    {
-      id: '5',
-      nome: 'Parque Nacional da Serra da Canastra',
-      descricao: 'Em Minas Gerais, é a nascente do Rio São Francisco e lar de lobos-guará e tamanduás-bandeira.',
-      regiao: 'Sudeste',
-    },
-    {
-      id: '6',
-      nome: 'Parque Nacional da Chapada dos Veadeiros',
-      descricao: 'Em Goiás, protege o cerrado com cachoeiras cristalinas e formações rochosas milenares.',
-      regiao: 'Centro-Oeste',
-    },
-  ];
-  
-  export default parques;
+  {
+    id: '1',
+    nome: 'Parque Nacional da Amazônia',
+    descricao: 'Localizado no Pará, protege uma das áreas mais ricas em biodiversidade da floresta amazônica.',
+    regiao: 'Norte',
+    tipo: 'Floresta',
+    regras: 'Proibido caça e pesca. Trilhas apenas com guia credenciado. Não deixe lixo.',
+    atracoes: 'Rio Tapajós, trilhas na floresta primária, observação de fauna amazônica.',
+  },
+  {
+    id: '2',
+    nome: 'Parque Nacional da Chapada Diamantina',
+    descricao: 'Na Bahia, encanta com cachoeiras, grutas e chapadas no coração do sertão nordestino.',
+    regiao: 'Nordeste',
+    tipo: 'Montanha',
+    regras: 'Camping apenas em áreas designadas. Fogueiras proibidas. Use trilhas sinalizadas.',
+    atracoes: 'Cachoeira da Fumaça, Gruta da Lapa Doce, Poço Encantado, Morro do Pai Inácio.',
+  },
+  {
+    id: '3',
+    nome: 'Parque Nacional de Brasília',
+    descricao: 'Conhecido como "Água Mineral", preserva o cerrado e abastece parte da capital federal.',
+    regiao: 'Centro-Oeste',
+    tipo: 'Cerrado',
+    regras: 'Banho apenas nas piscinas naturais permitidas. Animais domésticos não são permitidos.',
+    atracoes: 'Piscinas naturais de água mineral, trilha da Capetinga, observação de lobos-guará.',
+  },
+  {
+    id: '4',
+    nome: 'Parque Nacional do Iguaçu',
+    descricao: 'No Paraná, abriga as famosas Cataratas do Iguaçu, Patrimônio Natural da Humanidade pela UNESCO.',
+    regiao: 'Sul',
+    tipo: 'Floresta',
+    regras: 'Não se aproxime das quedas. Siga sempre os guias. Proibido alimentar animais.',
+    atracoes: 'Cataratas do Iguaçu, Trilha das Cataratas, passeio de barco, observação de tucanos.',
+  },
+  {
+    id: '5',
+    nome: 'Parque Nacional da Serra da Canastra',
+    descricao: 'Em Minas Gerais, é a nascente do Rio São Francisco e lar de lobos-guará e tamanduás-bandeira.',
+    regiao: 'Sudeste',
+    tipo: 'Montanha',
+    regras: 'Trilhas fechadas no período de chuvas. Respeite a sinalização. Não colete plantas.',
+    atracoes: 'Nascente do Rio São Francisco, Cachoeira Casca D\'Anta, observação de fauna do cerrado.',
+  },
+  {
+    id: '6',
+    nome: 'Parque Nacional da Chapada dos Veadeiros',
+    descricao: 'Em Goiás, protege o cerrado com cachoeiras cristalinas e formações rochosas milenares.',
+    regiao: 'Centro-Oeste',
+    tipo: 'Cerrado',
+    regras: 'Trilhas com limite de visitantes por dia. Obrigatório uso de protetor solar biodegradável.',
+    atracoes: 'Vale da Lua, Cachoeira dos Couros, Cânion II, formações rochosas do Pré-Cambriano.',
+  },
+];
+
+export default parques;
